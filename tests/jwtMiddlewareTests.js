@@ -16,7 +16,7 @@ var failedToAuth = { success: false, message: 'Failed to authenticate token.' };
 var noToken      = { success: false, message: 'No token provided.' };
 
 describe('test routes', function() {
-    before(funtion() {
+    before(function() {
         server = app.listen(app.get('port'));
     })
 
