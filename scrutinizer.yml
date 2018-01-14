@@ -1,0 +1,15 @@
+
+checks:
+    javascript: true
+
+build:
+    environment:
+        node: 'v8.9.0'
+
+    tests:
+        override:
+            -
+                command: 'npm run scrutinizer'
+                coverage:
+                    file: 'coverage/clover.xml'
+                    format: 'clover'

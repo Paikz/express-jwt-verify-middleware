@@ -4,8 +4,20 @@
   "description": "Simple middleware module to verify jwt tokens and pass on a decoded object in every route",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nyc --all --reporter=html --reporter=text mocha --exit --reporter=spec tests/**/*.js",
+    "scrutinizer": "nyc --all --reporter=clover mocha --exit --reporter=spec tests/**/*.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "body-parser": "^1.18.2",
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "jsonwebtoken": "^8.1.0",
+    "mocha": "^4.1.0",
+    "nyc": "^11.4.1"
+  },
+  "dependencies": {
+    "express": "^4.16.2"
+  }
 }
