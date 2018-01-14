@@ -6,8 +6,8 @@ var jwt           = require('jsonwebtoken');
 var jwtMiddleware = require('../index');
 var app           = express();
 
-var router = app.Router();
-var authRouter = app.Router();
+var router = express.Router();
+var authRouter = express.Router();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
