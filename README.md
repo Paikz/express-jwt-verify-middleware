@@ -13,6 +13,7 @@ An Express middleware used to verify incoming tokens in requests and decode them
 ## How to use
 
 ```
+var express       = require("express");
 var jwtMiddleware = require('express-jwt-verify-middleware');
 var router        = express.Router();
 
