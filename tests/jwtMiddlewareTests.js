@@ -23,9 +23,8 @@ describe('test routes', function() {
 
     it('/ should return status 200', function (done) {
         chai.request(server)
-        .get(url)
+        .get("/")
         .end(function (err, res) {
-            expect(err).to.be.null;
             expect(res).to.have.status(200);
             done();
         });
@@ -33,9 +32,8 @@ describe('test routes', function() {
 
     it('/gettoken should return status 200', function (done) {
         chai.request(server)
-        .get(url + '/getToken')
+        .get('/getToken')
         .end(function (err, res) {
-            expect(err).to.be.null;
             expect(res).to.have.status(200);
             done();
         });
@@ -43,9 +41,8 @@ describe('test routes', function() {
 
     it('/test should return status 403', function (done) {
         chai.request(server)
-        .get(url + '/test')
+        .get('/test')
         .end(function (err, res) {
-            expect(err).to.be.null;
             expect(res).to.have.status(403);
             expect(res.body).to.deep.equal(noToken)
             done();
@@ -54,9 +51,8 @@ describe('test routes', function() {
 
     it('/test?token=1.1.1 should return status 403 and failedToAuth', function (done) {
         chai.request(server)
-        .get(url + '/test?token=1.1.1')
+        .get('/test?token=1.1.1')
         .end(function (err, res) {
-            expect(err).to.be.null;
             expect(res).to.have.status(403);
             expect(res.body).to.deep.equal(failedToAuth)
             done();
@@ -76,19 +72,13 @@ describe('Test JWT', function () {
 
     it('statuscode 200 when using the created token', function (done) {
         chai.request(server)
-        .get(url + '/getToken')
+        .get('/getToken')
         .end(function (err, res) {
             chai.request(server)
-            .get(url + '/test?token=1.1.1')
-            .end(function (err, res) {
-                expect(res).to.have.status(403);
-            });
-
-            chai.request(server)
-            .get(url + '/test?token=' + JSON.parse(res.body).token)
+            .get('/test?token=' + res.body.token)
             .end(function (err, res) {
                 expect(res).to.have.status(200);
-                expect(JSON.parse(res.body).username).to.equal('foo');
+                expect(res.body.username).to.equal('foo');
                 done();
             });
         });
